@@ -1,1 +1,1 @@
-DELETE https://fullstack-open-backend-f63v.onrender.com/api/blogposts/1
+DELETE https://fullstack-open-part4.onrender.com/api/blogposts/1
