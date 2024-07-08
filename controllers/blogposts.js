@@ -2,14 +2,14 @@ const blogpostsRouter = require('express').Router();
 const Blogpost = require('../models/blogpost');
 
 /* Get all blogposts */
-blogpostsRouter.get('/blogposts/', (request, response) => {
+blogpostsRouter.get('/', (request, response) => {
   Blogpost.find({}).then((blogposts) => {
     response.json(blogposts);
   });
 });
 
 /* Get blogpost info by id */
-blogpostsRouter.get('/blogposts/:id', (request, response, next) => {
+blogpostsRouter.get('/:id', (request, response, next) => {
   Blogpost.findById(request.params.id)
     .then((blogpost) => {
       if (blogpost) {
@@ -22,7 +22,7 @@ blogpostsRouter.get('/blogposts/:id', (request, response, next) => {
 });
 
 /* Get amount of blogposts in database */
-blogpostsRouter.get('/blogposts/info', (request, response) => {
+blogpostsRouter.get('/info', (request, response) => {
   Blogpost.find({}).then((blogposts) => {
     const amountOfBlogposts = blogposts.length;
     const date = new Date();
@@ -32,7 +32,7 @@ blogpostsRouter.get('/blogposts/info', (request, response) => {
 });
 
 /* Add new blogpost */
-blogpostsRouter.post('/blogposts/', (request, response, next) => {
+blogpostsRouter.post('/', (request, response, next) => {
   const body = request.body;
 
   const blogpost = new Blogpost({
@@ -49,7 +49,7 @@ blogpostsRouter.post('/blogposts/', (request, response, next) => {
 });
 
 /* Delete blogpost */
-blogpostsRouter.delete('/blogposts/:id', (request, response, next) => {
+blogpostsRouter.delete('/:id', (request, response, next) => {
   Blogpost.findByIdAndDelete(request.params.id)
     .then((result) => {
       console.log('Deleted blogpost:', result);
