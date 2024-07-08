@@ -5,6 +5,7 @@ const blogpostSchema = new mongoose.Schema({
     type: String,
     required: true,
     minLength: 5,
+    unique: true,
   },
   author: {
     type: String,
@@ -15,6 +16,7 @@ const blogpostSchema = new mongoose.Schema({
     type: String,
     required: true,
     minLength: 5,
+    unique: true,
   },
   likes: Number,
 });
