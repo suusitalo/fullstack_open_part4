@@ -36,8 +36,10 @@ blogpostsRouter.post('/', (request, response, next) => {
   const body = request.body;
 
   const blogpost = new Blogpost({
-    name: body.name,
-    number: body.number,
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    likes: body.likes,
   });
 
   blogpost
