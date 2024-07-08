@@ -1,0 +1,10 @@
+POST http://localhost:3003/api/blogposts
+Content-Type: application/json
+
+{
+  "title": "Testiblogipostaus",
+  "author": "Seppo Blogipostinen",
+  "url": "www.google.fi",
+  "likes": 1
+}
+

@@ -1,0 +1,9 @@
+.DS_Store
+
+.idea
+.env
+
+package-lock.json
+
+node_modules/
+/test-results/

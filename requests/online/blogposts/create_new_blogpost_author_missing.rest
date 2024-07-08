@@ -1,0 +1,10 @@
+POST https://fullstack-open-backend-f63v.onrender.com/api/blogposts
+Content-Type: application/json
+
+{
+  "title": "Testiblogipostaus",
+  "author": "",
+  "url": "www.google.fi",
+  "likes": 1
+}
+
