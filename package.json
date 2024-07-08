@@ -1,11 +1,11 @@
 {
   "name": "fullstack_open_part4",
   "version": "0.0.1",
-  "description": "fullstack kurssin bäkkärihoms",
+  "description": "fullstack kurssin bäkkärihoms part4",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "debug": "node --inspect app.js",
     "prepare": "husky",
