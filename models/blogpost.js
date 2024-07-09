@@ -18,7 +18,10 @@ const blogpostSchema = new mongoose.Schema({
     minLength: 5,
     unique: true,
   },
-  likes: Number,
+  likes: {
+    type: Number,
+    default: 0,
+  },
 });
 
 blogpostSchema.set('toJSON', {

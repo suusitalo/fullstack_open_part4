@@ -2,37 +2,45 @@ const blogpostsRouter = require('express').Router();
 const Blogpost = require('../models/blogpost');
 
 /* Get all blogposts */
-blogpostsRouter.get('/', (request, response) => {
-  Blogpost.find({}).then((blogposts) => {
-    response.json(blogposts);
-  });
+blogpostsRouter.get('/', async (request, response) => {
+  const blogposts = await Blogpost.find({});
+  response.json(blogposts);
 });
 
 /* Get blogpost info by id */
-blogpostsRouter.get('/:id', (request, response, next) => {
-  Blogpost.findById(request.params.id)
-    .then((blogpost) => {
-      if (blogpost) {
-        response.json(blogpost);
-      } else {
-        response.status(404).end();
-      }
-    })
-    .catch((error) => next(error));
+blogpostsRouter.get('/:id', async (request, response) => {
+  const blogpost = await Blogpost.findById(request.params.id);
+  if (blogpost) {
+    response.json(blogpost);
+  } else {
+    response.status(404).end();
+  }
 });
 
-/* Get amount of blogposts in database */
-blogpostsRouter.get('/info', (request, response) => {
-  Blogpost.find({}).then((blogposts) => {
-    const amountOfBlogposts = blogposts.length;
-    const date = new Date();
-    const infoResponse = `<p>Phonebook has info for ${amountOfBlogposts} people</p><p>${date}</p>`;
-    response.send(infoResponse);
-  });
+/* Update blogpost info */
+blogpostsRouter.put('/:id', async (request, response) => {
+  const body = request.body;
+  const updatedBlogpost = {
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    likes: body.likes,
+  };
+
+  const blogpost = await Blogpost.findByIdAndUpdate(
+    request.params.id,
+    updatedBlogpost,
+    { new: true }
+  );
+  if (blogpost) {
+    response.json(blogpost);
+  } else {
+    response.status(404).end();
+  }
 });
 
 /* Add new blogpost */
-blogpostsRouter.post('/', (request, response, next) => {
+blogpostsRouter.post('/', async (request, response) => {
   const body = request.body;
 
   const blogpost = new Blogpost({
@@ -41,25 +49,14 @@ blogpostsRouter.post('/', (request, response, next) => {
     url: body.url,
     likes: body.likes,
   });
-
-  blogpost
-    .save()
-    .then((savedBlogpost) => {
-      response.json(savedBlogpost);
-    })
-    .catch((error) => next(error));
+  const savedBlogpost = await blogpost.save();
+  response.status(201).json(savedBlogpost);
 });
 
 /* Delete blogpost */
-blogpostsRouter.delete('/:id', (request, response, next) => {
-  Blogpost.findByIdAndDelete(request.params.id)
-    .then((result) => {
-      console.log('Deleted blogpost:', result);
-      Blogpost.find({}).then((blogposts) => {
-        response.json(blogposts);
-      });
-    })
-    .catch((error) => next(error));
+blogpostsRouter.delete('/:id', async (request, response) => {
+  await Blogpost.findByIdAndDelete(request.params.id);
+  response.status(204).end();
 });
 
 module.exports = blogpostsRouter;
