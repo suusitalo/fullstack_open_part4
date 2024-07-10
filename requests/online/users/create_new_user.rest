@@ -4,6 +4,6 @@ Content-Type: application/json
 {
   "username": "loginname",
   "name": "käyttäjän oikea nimi",
-  "passsword": "salasana"
+  "password": "salasana"
 }
 

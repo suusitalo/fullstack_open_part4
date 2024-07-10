@@ -83,6 +83,7 @@ describe('addition of a blogpost', () => {
       author: 'Seppo TestiBlogipostinen',
       url: 'www.validBlogposturl.fi',
       likes: 3,
+      userId: '668dfe695c1a154a3b01e67f',
     };
     await api
       .post('/api/blogposts')
@@ -102,6 +103,7 @@ describe('addition of a blogpost', () => {
       title: 'Valid new Blogpost',
       url: 'www.validBlogposturl.fi',
       likes: 3,
+      userId: '668dfe695c1a154a3b01e67f',
     };
     await api.post('/api/blogposts').send(newBlogpost).expect(400);
 
@@ -115,6 +117,7 @@ describe('addition of a blogpost', () => {
       author: 'Author Name',
       url: 'www.validBlogposturl.fi',
       likes: 3,
+      userId: '668dfe695c1a154a3b01e67f',
     };
     await api.post('/api/blogposts').send(newBlogpost).expect(400);
 
@@ -128,6 +131,7 @@ describe('addition of a blogpost', () => {
       title: 'Valid blogpost title',
       author: 'Author Name',
       likes: 3,
+      userId: '668dfe695c1a154a3b01e67f',
     };
     await api.post('/api/blogposts').send(newBlogpost).expect(400);
 
@@ -141,6 +145,7 @@ describe('addition of a blogpost', () => {
       title: 'Valid blogpost title',
       url: 'www.validBlogposturl.fi',
       author: 'Author Name',
+      userId: '668dfe695c1a154a3b01e67f',
     };
     await api.post('/api/blogposts').send(newBlogpost).expect(201);
 

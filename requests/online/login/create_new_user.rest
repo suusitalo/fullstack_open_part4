@@ -1,0 +1,8 @@
+POST https://fullstack-open-part4.onrender.com/api/login
+Content-Type: application/json
+
+{
+  "username": "loginname",
+  "password": "salasana"
+}
+
