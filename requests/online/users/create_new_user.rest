@@ -1,0 +1,9 @@
+POST https://fullstack-open-part4.onrender.com/api/users
+Content-Type: application/json
+
+{
+  "username": "loginname",
+  "name": "käyttäjän oikea nimi",
+  "passsword": "salasana"
+}
+

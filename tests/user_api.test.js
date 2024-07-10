@@ -1,4 +1,4 @@
-const { test, describe, beforeEach } = require('node:test');
+const { test, describe, beforeEach, after } = require('node:test');
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
 
@@ -7,6 +7,7 @@ const app = require('../app');
 
 const assert = require('node:assert');
 const helper = require('./test_helper');
+const mongoose = require('mongoose');
 
 const api = supertest(app);
 
@@ -62,4 +63,8 @@ describe('when there is initially one user at db', () => {
 
     assert.strictEqual(usersAtEnd.length, usersAtStart.length);
   });
+});
+
+after(async () => {
+  await mongoose.connection.close();
 });
